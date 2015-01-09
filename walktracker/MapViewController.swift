@@ -78,10 +78,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIToolbarD
         for location in locations {
             if let newLocation = location as? CLLocation {
                 if newLocation.horizontalAccuracy > 0 {
-                    mapView.setCenterCoordinate(newLocation.coordinate, animated: true)
                     
-                    let region = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 1000, 1000)
-                    mapView.setRegion(region, animated: true)
+                    // Only set the location on and region on the first try
+                    // This may change in the future
+                    if trackedLocations.count <= 0 {
+                        mapView.setCenterCoordinate(newLocation.coordinate, animated: true)
+                        
+                        let region = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 1000, 1000)
+                        mapView.setRegion(region, animated: true)
+                    }
                     
                     if let oldLocation = trackedLocations.last as CLLocation? {
                         let delta: Double = newLocation.distanceFromLocation(oldLocation)
