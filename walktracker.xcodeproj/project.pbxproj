@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		923489B81A600007002C0B33 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 923489B71A600007002C0B33 /* MapKit.framework */; };
 		92C338AF1A5FF18200DA1532 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C338AE1A5FF18200DA1532 /* AppDelegate.swift */; };
 		92C338B11A5FF18200DA1532 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C338B01A5FF18200DA1532 /* MapViewController.swift */; };
 		92C338B31A5FF18200DA1532 /* WalksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C338B21A5FF18200DA1532 /* WalksViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		923489B71A600007002C0B33 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		92C338A91A5FF18200DA1532 /* walktracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = walktracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92C338AD1A5FF18200DA1532 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92C338AE1A5FF18200DA1532 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				923489B81A600007002C0B33 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +64,7 @@
 		92C338A01A5FF18200DA1532 = {
 			isa = PBXGroup;
 			children = (
+				923489B71A600007002C0B33 /* MapKit.framework */,
 				92C338AB1A5FF18200DA1532 /* walktracker */,
 				92C338C31A5FF18200DA1532 /* walktrackerTests */,
 				92C338AA1A5FF18200DA1532 /* Products */,
@@ -165,6 +169,11 @@
 					92C338A81A5FF18200DA1532 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = R6U6AD5T87;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					92C338BF1A5FF18200DA1532 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -416,6 +425,7 @@
 				92C338CC1A5FF18200DA1532 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		92C338CD1A5FF18200DA1532 /* Build configuration list for PBXNativeTarget "walktrackerTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +434,7 @@
 				92C338CF1A5FF18200DA1532 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
