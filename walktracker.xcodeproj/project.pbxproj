@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		923489B81A600007002C0B33 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 923489B71A600007002C0B33 /* MapKit.framework */; };
+		923489BB1A606EB3002C0B33 /* walktracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 923489B91A606EB3002C0B33 /* walktracker.xcdatamodeld */; };
 		92C338AF1A5FF18200DA1532 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C338AE1A5FF18200DA1532 /* AppDelegate.swift */; };
 		92C338B11A5FF18200DA1532 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C338B01A5FF18200DA1532 /* MapViewController.swift */; };
-		92C338B31A5FF18200DA1532 /* WalksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C338B21A5FF18200DA1532 /* WalksViewController.swift */; };
 		92C338B61A5FF18200DA1532 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92C338B41A5FF18200DA1532 /* Main.storyboard */; };
 		92C338B81A5FF18200DA1532 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92C338B71A5FF18200DA1532 /* Images.xcassets */; };
 		92C338BB1A5FF18200DA1532 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92C338B91A5FF18200DA1532 /* LaunchScreen.xib */; };
@@ -29,11 +29,11 @@
 
 /* Begin PBXFileReference section */
 		923489B71A600007002C0B33 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		923489BA1A606EB3002C0B33 /* walktracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = walktracker.xcdatamodel; sourceTree = "<group>"; };
 		92C338A91A5FF18200DA1532 /* walktracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = walktracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92C338AD1A5FF18200DA1532 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92C338AE1A5FF18200DA1532 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92C338B01A5FF18200DA1532 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		92C338B21A5FF18200DA1532 /* WalksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalksViewController.swift; sourceTree = "<group>"; };
 		92C338B51A5FF18200DA1532 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		92C338B71A5FF18200DA1532 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		92C338BA1A5FF18200DA1532 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -85,9 +85,9 @@
 			children = (
 				92C338AE1A5FF18200DA1532 /* AppDelegate.swift */,
 				92C338B01A5FF18200DA1532 /* MapViewController.swift */,
-				92C338B21A5FF18200DA1532 /* WalksViewController.swift */,
 				92C338B41A5FF18200DA1532 /* Main.storyboard */,
 				92C338B71A5FF18200DA1532 /* Images.xcassets */,
+				923489B91A606EB3002C0B33 /* walktracker.xcdatamodeld */,
 				92C338B91A5FF18200DA1532 /* LaunchScreen.xib */,
 				92C338AC1A5FF18200DA1532 /* Supporting Files */,
 			);
@@ -225,9 +225,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92C338B31A5FF18200DA1532 /* WalksViewController.swift in Sources */,
 				92C338AF1A5FF18200DA1532 /* AppDelegate.swift in Sources */,
 				92C338B11A5FF18200DA1532 /* MapViewController.swift in Sources */,
+				923489BB1A606EB3002C0B33 /* walktracker.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +437,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		923489B91A606EB3002C0B33 /* walktracker.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				923489BA1A606EB3002C0B33 /* walktracker.xcdatamodel */,
+			);
+			currentVersion = 923489BA1A606EB3002C0B33 /* walktracker.xcdatamodel */;
+			path = walktracker.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 92C338A11A5FF18200DA1532 /* Project object */;
 }
