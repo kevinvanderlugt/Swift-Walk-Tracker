@@ -39,6 +39,29 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIToolbarD
         locationManager.requestAlwaysAuthorization()
     }
     
+    @IBAction func trashPressed(sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Delete Walk",
+                                    message: "Are you sure you want to trash your current route?",
+                                preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                        style: UIAlertActionStyle.Default,
+                                        handler: nil)
+        
+        let deleteAction = UIAlertAction(title: "Delete",
+                                        style: UIAlertActionStyle.Destructive)
+            { (action) in
+                self.trackedLocations = []
+                self.totalDistance = 0.0
+                self.mapView.removeOverlays(self.mapView.overlays)
+            }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(deleteAction)
+        self.presentViewController(alert,
+            animated: true, completion: nil)
+    }
+    
     @IBAction func walkPressed(sender: UIBarButtonItem) {
         if isTracking {
             sender.title = "Start"
