@@ -10,9 +10,13 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, UIToolbarDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, UIToolbarDelegate, MKMapViewDelegate {
     var locationManager: CLLocationManager!
-    var totalDistance: CLLocationDistance = 0.0
+    var totalDistance: CLLocationDistance = 0.0 {
+        didSet {
+            titleItem.title = String(format: "%.02f km", totalDistance/1000.0)
+        }
+    }
     
     var trackedLocations: Array<CLLocation> = []
     
@@ -33,12 +37,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIToolbarD
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
         locationManager.requestAlwaysAuthorization()
-        
-        updateDistanceLabel()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        updateDistanceLabel()
     }
     
     @IBAction func walkPressed(sender: UIBarButtonItem) {
@@ -65,10 +63,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIToolbarD
                     if let oldLocation = trackedLocations.last as CLLocation? {
                         let delta: Double = newLocation.distanceFromLocation(oldLocation)
                         totalDistance += delta
-                        updateDistanceLabel()
                     }
                     
                     trackedLocations.append(newLocation)
+                    
+                    mapView.removeOverlays(mapView.overlays)
+                    mapView.addOverlay(polyLine())
                 }
                 else {
                     let alert = UIAlertController(title: "Horizontal Accuracy Failed",
@@ -86,8 +86,23 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIToolbarD
         }
     }
     
-    func updateDistanceLabel() {
-        titleItem.title = String(format: "%.02f km", totalDistance/1000.0)
+    func polyLine() -> MKPolyline {
+        var coordinates = trackedLocations.map({ (location: CLLocation) ->
+            CLLocationCoordinate2D in
+            return location.coordinate
+        })
+        
+        return MKPolyline(coordinates: &coordinates, count: trackedLocations.count)
+    }
+    
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+        if let polyLine = overlay as? MKPolyline {
+            let renderer = MKPolylineRenderer(polyline: polyLine)
+            renderer.strokeColor = UIColor.purpleColor()
+            renderer.lineWidth = 3
+            return renderer
+        }
+        return nil
     }
 
     override func didReceiveMemoryWarning() {
