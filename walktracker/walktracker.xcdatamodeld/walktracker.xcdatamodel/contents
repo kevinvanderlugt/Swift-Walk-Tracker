@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Walk" representedClassName="walktracker.Walk" syncable="YES">
+        <attribute name="distance" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="endTimestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="locations" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="startTimestamp" attributeType="Date" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Walk" positionX="-63" positionY="-18" width="128" height="103"/>
+    </elements>
+</model>
