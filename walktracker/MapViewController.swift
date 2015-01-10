@@ -12,13 +12,8 @@ import CoreLocation
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, UIToolbarDelegate, MKMapViewDelegate {
     var locationManager: CLLocationManager!
-    var totalDistance: CLLocationDistance = 0.0 {
-        didSet {
-            titleItem.title = String(format: "%.02f km", totalDistance/1000.0)
-        }
-    }
     
-    var trackedLocations: Array<CLLocation> = []
+    let walkStore: WalkStore = WalkStore.sharedInstance
     
     var isTracking: Bool = false
     
@@ -51,9 +46,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIToolbarD
         let deleteAction = UIAlertAction(title: "Delete",
                                         style: UIAlertActionStyle.Destructive)
             { (action) in
-                self.trackedLocations = []
-                self.totalDistance = 0.0
                 self.mapView.removeOverlays(self.mapView.overlays)
+                self.walkStore.stopWalk()
             }
         
         alert.addAction(cancelAction)
@@ -69,58 +63,60 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIToolbarD
         } else {
             sender.title = "Stop"
             locationManager.startUpdatingLocation()
+            walkStore.startWalk()
         }
+        
         isTracking = !isTracking
         mapView.showsUserLocation = isTracking
+        updateDisplay()
+    }
+    
+    func updateDisplay() {
+        if let walk = walkStore.currentWalk {
+            titleItem.title = String(format: "%.02f km", walk.distance.doubleValue/1000.0)
+        }
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        for location in locations {
-            if let newLocation = location as? CLLocation {
-                if newLocation.horizontalAccuracy > 0 {
-                    
-                    // Only set the location on and region on the first try
-                    // This may change in the future
-                    if trackedLocations.count <= 0 {
-                        mapView.setCenterCoordinate(newLocation.coordinate, animated: true)
+        if let walk = walkStore.currentWalk {
+            for location in locations {
+                if let newLocation = location as? CLLocation {
+                    if newLocation.horizontalAccuracy > 0 {
+                        // Only set the location on and region on the first try
+                        // This may change in the future
+                        if walk.locations.count <= 0 {
+                            mapView.setCenterCoordinate(newLocation.coordinate, animated: true)
+                            
+                            let region = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 1000, 1000)
+                            mapView.setRegion(region, animated: true)
+                        }
+                        let locations = walk.locations as Array<CLLocation>
+                        if let oldLocation = locations.last as CLLocation? {
+                            let delta: Double = newLocation.distanceFromLocation(oldLocation)
+                            walk.addDistance(delta)
+                        }
                         
-                        let region = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 1000, 1000)
-                        mapView.setRegion(region, animated: true)
+                        walk.addNewLocation(newLocation)
+                        
+                        mapView.removeOverlays(mapView.overlays)
+                        mapView.addOverlay(polyLine())
                     }
-                    
-                    if let oldLocation = trackedLocations.last as CLLocation? {
-                        let delta: Double = newLocation.distanceFromLocation(oldLocation)
-                        totalDistance += delta
-                    }
-                    
-                    trackedLocations.append(newLocation)
-                    
-                    mapView.removeOverlays(mapView.overlays)
-                    mapView.addOverlay(polyLine())
-                }
-                else {
-                    let alert = UIAlertController(title: "Horizontal Accuracy Failed",
-                        message: "Accuracy \(newLocation.horizontalAccuracy) below 20",
-                        preferredStyle: UIAlertControllerStyle.Alert)
-                    let alertAction = UIAlertAction(title: "Okay",
-                        style: UIAlertActionStyle.Default, handler: nil)
-                    
-                    alert.addAction(alertAction)
-                    self.presentViewController(alert,
-                                                animated: true, completion: nil)
-                    
                 }
             }
+            updateDisplay()
         }
     }
     
     func polyLine() -> MKPolyline {
-        var coordinates = trackedLocations.map({ (location: CLLocation) ->
-            CLLocationCoordinate2D in
-            return location.coordinate
-        })
-        
-        return MKPolyline(coordinates: &coordinates, count: trackedLocations.count)
+        if let walk = walkStore.currentWalk {
+            var coordinates = walk.locations.map({ (location: CLLocation) ->
+                CLLocationCoordinate2D in
+                return location.coordinate
+            })
+            
+            return MKPolyline(coordinates: &coordinates, count: walk.locations.count)
+        }
+        return MKPolyline()
     }
     
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
