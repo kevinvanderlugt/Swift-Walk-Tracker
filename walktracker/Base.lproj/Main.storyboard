@@ -34,26 +34,35 @@
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="JZ5-uF-Kxl"/>
                                     <barButtonItem title="0.0 km" id="HtH-pV-OHL">
-                                        <color key="tintColor" red="0.74117647060000003" green="0.38823529410000002" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" red="0.61176470589999998" green="0.1529411765" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="sUy-V3-Tda"/>
-                                    <barButtonItem title="Start" id="6qw-Kz-urk">
-                                        <color key="tintColor" red="0.74117647060000003" green="0.38823529410000002" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <barButtonItem systemItem="add" id="6qw-Kz-urk">
+                                        <color key="tintColor" red="0.61176470589999998" green="0.1529411765" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="walkPressed:" destination="9pv-A4-QxB" id="7Uh-0H-CVY"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
-                                <color key="tintColor" red="0.74117647060000003" green="0.38823529410000002" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.61176470588235299" green="0.15294117647058825" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="9pv-A4-QxB" id="wM2-1H-jdN"/>
                                 </connections>
                             </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iG3-3H-lD2" customClass="AnimatedStartButton" customModule="walktracker" customModuleProvider="target">
+                                <rect key="frame" x="510" y="510" width="64" height="67"/>
+                                <state key="normal" image="add_button"/>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="u0w-0l-0NM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="we5-7W-OEc" secondAttribute="trailing" id="4on-Qb-lwm"/>
                             <constraint firstItem="GY2-qY-bac" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="DxQ-nx-IQr"/>
+                            <constraint firstAttribute="trailing" secondItem="iG3-3H-lD2" secondAttribute="trailing" constant="26" id="I3o-Wd-2xP"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="iG3-3H-lD2" secondAttribute="bottom" constant="23" id="VWS-RZ-1mG"/>
                             <constraint firstItem="we5-7W-OEc" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" id="WLe-Ni-C96"/>
                             <constraint firstAttribute="bottom" secondItem="we5-7W-OEc" secondAttribute="bottom" id="dUo-mY-tWU"/>
                             <constraint firstItem="GY2-qY-bac" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-16" id="ftz-0b-5ae"/>
@@ -74,4 +83,7 @@
             <point key="canvasLocation" x="750" y="-320"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="add_button" width="64" height="67"/>
+    </resources>
 </document>

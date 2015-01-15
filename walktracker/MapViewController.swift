@@ -129,6 +129,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIToolbarD
         return nil
     }
 
+    @IBAction func buttonPressed(sender: UIButton) {
+        sender.selected = !sender.selected
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
