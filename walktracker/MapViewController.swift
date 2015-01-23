@@ -17,9 +17,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIToolbarD
     
     var isTracking: Bool = false
     
-    @IBOutlet weak var walkButton: UIBarButtonItem!
-    
-    @IBOutlet weak var titleItem: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
@@ -56,12 +53,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIToolbarD
             animated: true, completion: nil)
     }
     
-    @IBAction func walkPressed(sender: UIBarButtonItem) {
+    @IBAction func walkPressed(sender: UIButton) {
+        sender.selected = !sender.selected
         if isTracking {
-            sender.title = "Start"
             locationManager.stopUpdatingLocation()
         } else {
-            sender.title = "Stop"
             locationManager.startUpdatingLocation()
             walkStore.startWalk()
         }
@@ -72,9 +68,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIToolbarD
     }
     
     func updateDisplay() {
-        if let walk = walkStore.currentWalk {
-            titleItem.title = String(format: "%.02f km", walk.distance.doubleValue/1000.0)
-        }
+//        if let walk = walkStore.currentWalk {
+//            titleItem.title = String(format: "%.02f km", walk.distance.doubleValue/1000.0)
+//        }
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
@@ -127,10 +123,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIToolbarD
             return renderer
         }
         return nil
-    }
-
-    @IBAction func buttonPressed(sender: UIButton) {
-        sender.selected = !sender.selected
     }
     
     override func didReceiveMemoryWarning() {
