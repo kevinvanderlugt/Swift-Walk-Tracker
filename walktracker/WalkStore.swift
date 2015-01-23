@@ -22,6 +22,17 @@ class WalkStore: NSObject {
     
     var currentWalk: Walk!
     
+    lazy var allWalks: [Walk] = {
+        let fetchRequest = NSFetchRequest(entityName: "Walk")
+        let sortDescriptor = NSSortDescriptor(key: "startTimestamp", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        if let fetchResults = self.managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [Walk] {
+            return fetchResults
+        }
+        return [Walk]()
+    }()
+    
     func startWalk() {
         if (currentWalk == nil) {
             currentWalk = NSEntityDescription.insertNewObjectForEntityForName("Walk", inManagedObjectContext: self.managedObjectContext!) as Walk
@@ -29,22 +40,27 @@ class WalkStore: NSObject {
     }
     
     func stopWalk() {
-        currentWalk.endTimestamp = NSDate()
-        saveContext()
+        if currentWalk != nil {
+            currentWalk.endTimestamp = NSDate()
+            saveContext()
+        }
         
         currentWalk = nil
     }
     
-    func allWalks() -> [Walk]? {
-        let fetchRequest = NSFetchRequest(entityName: "Walk")
-        let sortDescriptor = NSSortDescriptor(key: "startTimestamp", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-
-        if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [Walk] {
-            return fetchResults
-        }
-        return nil
-    }
+//    func allWalks() -> [Walk]? {
+//        let fetchRequest = NSFetchRequest(entityName: "Walk")
+//        let sortDescriptor = NSSortDescriptor(key: "startTimestamp", ascending: true)
+//        fetchRequest.sortDescriptors = [sortDescriptor]
+//
+//        NSLog("Starting Fetch")
+//        if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [Walk] {
+//            NSLog("Ending Fetch")
+//            return fetchResults
+//        }
+//        
+//        return nil
+//    }
     
     // MARK: - Core Data stack
     

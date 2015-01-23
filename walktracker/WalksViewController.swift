@@ -40,29 +40,21 @@ class WalksViewController: UIViewController, UIToolbarDelegate, UITableViewDataS
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         
-        if let allWalks = WalkStore.sharedInstance.allWalks() {
-            let walk = allWalks[indexPath.row] as Walk
-            cell.textLabel?.text = dateFormatter.stringFromDate(walk.startTimestamp)
-        }
-        else {
-            cell.textLabel?.text = "We need more walks!"
-        }
+        let allWalks = WalkStore.sharedInstance.allWalks
+        let walk = allWalks[indexPath.row]
+        cell.textLabel?.text = dateFormatter.stringFromDate(walk.startTimestamp)
         
         return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let allWalks = WalkStore.sharedInstance.allWalks() {
-            return allWalks.count
-        }
-        return 1
+        return WalkStore.sharedInstance.allWalks.count
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let allWalks = WalkStore.sharedInstance.allWalks() {
-            let walk = allWalks[indexPath.row] as Walk
-            WalkStore.sharedInstance.currentWalk = walk
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }
+        let allWalks = WalkStore.sharedInstance.allWalks
+        let walk = allWalks[indexPath.row] as Walk
+        WalkStore.sharedInstance.currentWalk = walk
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

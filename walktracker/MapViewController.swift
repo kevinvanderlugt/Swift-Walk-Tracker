@@ -151,8 +151,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIToolbarD
             
             let center = CLLocationCoordinate2D(latitude: (minLatitude + maxLatitude)/2.0,
                                                 longitude: (minLongitude + maxLongitude)/2.0)
-            // 10% padding for formatting
-            let span = MKCoordinateSpan(latitudeDelta: (maxLatitude - minLatitude)*1.1,
+            
+            // 10% padding need more padding vertically because of the toolbar
+            let span = MKCoordinateSpan(latitudeDelta: (maxLatitude - minLatitude)*1.3,
                 longitudeDelta: (maxLongitude - minLongitude)*1.1)
         
             return MKCoordinateRegion(center: center, span: span)
