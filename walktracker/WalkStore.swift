@@ -20,7 +20,7 @@ class WalkStore: NSObject {
         return _WalkStoreSharedInstance
     }
     
-    private(set) var currentWalk: Walk!
+    var currentWalk: Walk!
     
     func startWalk() {
         if (currentWalk == nil) {
@@ -37,6 +37,9 @@ class WalkStore: NSObject {
     
     func allWalks() -> [Walk]? {
         let fetchRequest = NSFetchRequest(entityName: "Walk")
+        let sortDescriptor = NSSortDescriptor(key: "startTimestamp", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+
         if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [Walk] {
             return fetchResults
         }
