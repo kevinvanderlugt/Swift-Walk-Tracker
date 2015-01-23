@@ -134,6 +134,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIToolbarD
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.TopAttached
     }
-
+    
+    @IBAction func unwindToMapsView(segue:UIStoryboardSegue) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 }
 

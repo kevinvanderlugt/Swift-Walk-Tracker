@@ -18,6 +18,7 @@
 		92C338B81A5FF18200DA1532 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92C338B71A5FF18200DA1532 /* Images.xcassets */; };
 		92C338BB1A5FF18200DA1532 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92C338B91A5FF18200DA1532 /* LaunchScreen.xib */; };
 		92C338C71A5FF18200DA1532 /* walktrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C338C61A5FF18200DA1532 /* walktrackerTests.swift */; };
+		92EE08391A72891E00D3313B /* WalksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EE08381A72891E00D3313B /* WalksViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		92C338C01A5FF18200DA1532 /* walktrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = walktrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		92C338C51A5FF18200DA1532 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92C338C61A5FF18200DA1532 /* walktrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = walktrackerTests.swift; sourceTree = "<group>"; };
+		92EE08381A72891E00D3313B /* WalksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalksViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			children = (
 				92C338AE1A5FF18200DA1532 /* AppDelegate.swift */,
 				92C338B01A5FF18200DA1532 /* MapViewController.swift */,
+				92EE08381A72891E00D3313B /* WalksViewController.swift */,
 				9264BE811A6164580039824A /* WalkStore.swift */,
 				9264BE4C1A60759F0039824A /* Walk.swift */,
 				92C338B41A5FF18200DA1532 /* Main.storyboard */,
@@ -239,6 +242,7 @@
 				9264BEB61A6550350039824A /* AnimatedStartButton.swift in Sources */,
 				923489BB1A606EB3002C0B33 /* walktracker.xcdatamodeld in Sources */,
 				9264BE821A6164580039824A /* WalkStore.swift in Sources */,
+				92EE08391A72891E00D3313B /* WalksViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
