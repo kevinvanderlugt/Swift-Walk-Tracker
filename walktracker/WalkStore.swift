@@ -48,20 +48,6 @@ class WalkStore: NSObject {
         currentWalk = nil
     }
     
-//    func allWalks() -> [Walk]? {
-//        let fetchRequest = NSFetchRequest(entityName: "Walk")
-//        let sortDescriptor = NSSortDescriptor(key: "startTimestamp", ascending: true)
-//        fetchRequest.sortDescriptors = [sortDescriptor]
-//
-//        NSLog("Starting Fetch")
-//        if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [Walk] {
-//            NSLog("Ending Fetch")
-//            return fetchResults
-//        }
-//        
-//        return nil
-//    }
-    
     // MARK: - Core Data stack
     
     lazy var applicationDocumentsDirectory: NSURL = {
