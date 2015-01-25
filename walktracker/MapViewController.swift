@@ -164,8 +164,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIToolbarD
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
         if let polyLine = overlay as? MKPolyline {
             let renderer = MKPolylineRenderer(polyline: polyLine)
-            renderer.strokeColor = UIColor.purpleColor()
-            renderer.lineWidth = 3
+            renderer.strokeColor = UIColor(hue:0.88, saturation:0.46, brightness:0.73, alpha:0.75)
+            renderer.lineWidth = 6
             return renderer
         }
         return nil
