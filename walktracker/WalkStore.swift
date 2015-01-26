@@ -20,7 +20,7 @@ class WalkStore: NSObject {
         return _WalkStoreSharedInstance
     }
     
-    var currentWalk: Walk!
+    var currentWalk: Walk?
     
     lazy var allWalks: [Walk] = {
         let fetchRequest = NSFetchRequest(entityName: "Walk")
@@ -35,17 +35,25 @@ class WalkStore: NSObject {
     
     func startWalk() {
         if (currentWalk == nil) {
-            currentWalk = NSEntityDescription.insertNewObjectForEntityForName("Walk", inManagedObjectContext: self.managedObjectContext!) as Walk
+            currentWalk = NSEntityDescription.insertNewObjectForEntityForName("Walk", inManagedObjectContext: self.managedObjectContext!) as? Walk
+            allWalks.append(currentWalk!)
         }
     }
     
     func stopWalk() {
         if currentWalk != nil {
-            currentWalk.endTimestamp = NSDate()
+            currentWalk?.endTimestamp = NSDate()
             saveContext()
         }
         
         currentWalk = nil
+    }
+    
+    func indexOfCurrentWalk() -> Int? {
+        if currentWalk != nil {
+            return find(allWalks, currentWalk!)
+        }
+        return nil
     }
     
     // MARK: - Core Data stack

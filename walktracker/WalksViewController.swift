@@ -31,6 +31,14 @@ class WalksViewController: UIViewController, UIToolbarDelegate, UITableViewDataS
         super.viewWillAppear(animated)
         
         self.tableView.reloadData()
+        self.setSelectedRow()
+    }
+    
+    func setSelectedRow() {
+        if let selectedWalkRow = WalkStore.sharedInstance.indexOfCurrentWalk() {
+            self.tableView.selectRowAtIndexPath(NSIndexPath(forRow: selectedWalkRow, inSection: 0),
+            animated: true, scrollPosition:  UITableViewScrollPosition.Middle)
+        }
     }
     
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
