@@ -7,7 +7,8 @@ The walk tracking application was intended to be incredibly simplistic.  While v
 ## Features
 There are really only two major features, track current walks using the GPS and review previous walks. This project was intended to be a small scope of features done really well.
 
-(Add some pictures here)
+![Walk Tracker Map](images/screenshot_map.PNG)
+![Walk Tracker List](images/screenshot_list.PNG)
 
 
 ## Want to help?
