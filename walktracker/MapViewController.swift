@@ -126,7 +126,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIToolbarD
     // This feels like it could definitely live somewhere else
     // I am not sure yet where this function lives
     func mapRegion(walk: Walk) -> MKCoordinateRegion? {
-        if let startLocation = walk.locations.first? {
+        if let startLocation = walk.locations.first {
             var minLatitude = startLocation.coordinate.latitude
             var maxLatitude = startLocation.coordinate.latitude
             

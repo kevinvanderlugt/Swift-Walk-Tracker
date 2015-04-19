@@ -88,7 +88,7 @@ class AnimatedStartButton : UIButton {
         bottomAnimation.fillMode = kCAFillModeBackwards
         bottomAnimation.timingFunction = CAMediaTimingFunction(controlPoints: 0.5, -0.8, 0.5, 1.85)
         
-        let topAnimation = bottomAnimation.copy() as CABasicAnimation
+        let topAnimation = bottomAnimation.copy() as! CABasicAnimation
         
         if (selected) {
             bottomAnimation.toValue = NSValue(CATransform3D: CATransform3DIdentity)
@@ -106,7 +106,7 @@ class AnimatedStartButton : UIButton {
 
 extension CALayer {
     func kv_applyAnimation(animation: CABasicAnimation) {
-        let copy = animation.copy() as CABasicAnimation
+        let copy = animation.copy() as! CABasicAnimation
         
         if copy.fromValue == nil {
             copy.fromValue = self.presentationLayer().valueForKeyPath(copy.keyPath)
